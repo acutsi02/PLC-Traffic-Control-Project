@@ -1,0 +1,391 @@
+FILE,LAD 2:
+SOR,0 EOR,0
+RCM,Traffic Simulation - Alex Cutsinger, Daniel Hinkle, and Korbyn Thompson (3/29/18)
+SOR,1 OSR,B3:99/0 BST,1 MOV,17,B3:11 MOV,30,N7:11 NXB,1 BST,2 MOV,145,B3:12 MOV,40,N7:12 NXB,2 BST,3 MOV,65,B3:13 MOV,50,N7:13 NXB,3 BST,4 MOV,33,B3:14 MOV,40,N7:14 NXB,4 BST,5 MOV,17,B3:15 MOV,30,N7:15 NXB,5 BST,6 MOV,25,B3:16 MOV,40,N7:16 NXB,6 BST,7 MOV,20,B3:17 MOV,50,N7:17 NXB,7 BST,8 MOV,18,B3:18 MOV,40,N7:18 NXB,8 BST,9 MOV,17,B3:5 MOV,30,T4:0.PRE NXB,9 MOV,9,R6:0.LEN MOV,9,R6:1.LEN BND,9 BND,8 BND,7 BND,6 BND,5 BND,4 BND,3 BND,2 BND,1 EOR,1
+RCM,Set the file registers to the values requested by the assignment document
+SOR,2 XIO,T4:0/DN TON,T4:0,40 EOR,2
+RCM,Run the timer for each step in the sequence
+SOR,3 XIC,T4:0/DN BST,1 SQO,#B3:10,FFFFh,B3:5,R6:0,9 NXB,1 SQO,#N7:10,FFFFh,T4:0.PRE,R6:1,9 BND,1 EOR,3
+RCM,When the time has expired, increment the sequence
+SOR,4 XIC,T4:0/DN BST,1 XIO,B3:1/0 EQU,R6:1.POS,2 NXB,1 XIO,B3:1/1 EQU,R6:1.POS,6 BND,1 BST,1 SQO,#B3:10,FFFFh,B3:5,R6:0,9 NXB,1 SQO,#N7:10,FFFFh,T4:0.PRE,R6:1,9 BND,1 EOR,4
+RCM,Skip if the walk button has NOT been pressed
+SOR,5 BST,1 XIC,I:1/0 NXB,1 XIC,B3:1/0 BND,1 OTE,B3:1/0 EOR,5
+RCM,Start/Stop for SW/NE Walk light
+SOR,6 XIC,T4:0/DN EQU,R6:0.POS,2 OTU,B3:1/0 EOR,6
+RCM,Reset the bit if they have had a turn
+SOR,7 BST,1 XIC,I:1/1 NXB,1 XIC,B3:1/1 BND,1 OTE,B3:1/1 EOR,7
+RCM,Start/Stop for SE/NW Walk light
+SOR,8 XIC,T4:0/DN EQU,R6:0.POS,6 OTU,B3:1/1 EOR,8
+RCM,Reset the bit if they have had a turn
+SOR,9 XIC,B3:5/7 XIO,O:2/6 XIO,O:2/5 XIC,B3:1/0 OTE,O:2/7 EOR,9
+RCM,Turn on walk NE
+SOR,10 XIC,B3:5/3 XIO,O:2/2 XIO,O:2/1 XIC,B3:1/1 OTE,O:2/3 EOR,10
+RCM,Turn on walk NW
+SOR,11 EOR,11
+RCM,
+SOR,12 XIC,B3:5/2 XIO,O:2/6 XIO,O:2/5 OTE,O:2/2 EOR,12
+RCM,Turn on Green NE
+SOR,13 XIC,B3:5/1 XIO,O:2/6 XIO,O:2/5 OTE,O:2/1 EOR,13
+RCM,Turn on Yellow NE
+SOR,14 BST,1 XIC,O:2/6 NXB,1 BST,2 XIC,O:2/5 NXB,2 BST,3 XIC,B3:5/0 NXB,3 XIO,O:2/2 XIO,O:2/1 XIO,O:2/6 XIO,O:2/5 XIC,S:4/5 BND,3 BND,2 BND,1 OTE,O:2/0 EOR,14
+RCM,Turn on Red NE
+SOR,15 EOR,15
+RCM,
+SOR,16 XIC,B3:5/6 XIO,O:2/2 XIO,O:2/1 OTE,O:2/6 EOR,16
+RCM,Turn on Green NW
+SOR,17 XIC,B3:5/5 XIO,O:2/2 XIO,O:2/1 OTE,O:2/5 EOR,17
+RCM,Turn on Green NW
+SOR,18 BST,1 XIC,O:2/2 NXB,1 BST,2 XIC,O:2/1 NXB,2 BST,3 XIC,B3:5/4 NXB,3 XIO,O:2/1 XIO,O:2/2 XIO,O:2/6 XIO,O:2/5 XIC,S:4/5 BND,3 BND,2 BND,1 OTE,O:2/4 EOR,18
+RCM,Turn on Red NW
+SOR,19 END,19
+RCM,
+FILE,SBR 3:
+SOR,0 END,0
+RCM,
+FILE,SBR 4:
+SOR,0 END,0
+RCM,
+FILE,SBR 5:
+SOR,0 END,0
+RCM,
+FILE,SBR 6:
+SOR,0 END,0
+RCM,
+FILE,SBR 7:
+SOR,0 END,0
+RCM,
+FILE,SBR 8:
+SOR,0 END,0
+RCM,
+FILE,SBR 9:
+SOR,0 END,0
+RCM,
+BTBL
+0
+0
+0
+0
+0
+145
+0
+0
+0
+0
+0
+17
+145
+65
+33
+17
+25
+20
+18
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+1
+NTBL
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+30
+40
+50
+40
+30
+40
+50
+40
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+FTBL
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+SYMBOLS
+T4:0/DN Time Done
+B3:1/0 Walk SW/NE CTRL
+B3:1/1 Walk SE/NW CTRL
+B3:99/0 Startup OSR
+I:1/1 Walk SE/NW RQST
+I:1/0 Walk SW/NE RQST
+B3:5/1 Yellow NE
+O:2/2 LMP Green NE
+O:2/1 LMP Yellow NE
+O:2/7 LMP Walk NE
+O:2/6 LMP Green NW
+O:2/5 LMP Yellow NW
+O:2/4 LMP Red NW
+O:2/3 LMP Walk NW
+O:2/0 LMP Red NE
+B3:5/7 Walk NE
+B3:5/3 Walk NW
+B3:5/5 Yellow NW
+B3:5/2 Green NE
+B3:5/6 Green NW
+B3:5/4 Red NE
+B3:5/0 Red NE
+S:4/6 Blink
+T4:0/TT Time Done
+S:4/5 Blink
